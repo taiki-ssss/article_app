@@ -8,8 +8,12 @@ module Visible
   end
 
   class_methods do
-    def public_count
-      where(status: 'public').count
+    def published_count
+      published.count
+    end
+
+    def published
+      where(status: 'public')
     end
   end
 
