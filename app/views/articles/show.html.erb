@@ -1,7 +1,5 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @article %>
-
+<%= render 'shared/flash', object: nil %>
 
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>

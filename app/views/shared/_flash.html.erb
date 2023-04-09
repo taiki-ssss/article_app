@@ -1,0 +1,14 @@
+<% flash.each do |type, message| %>
+  <div class="alert alert-<%= type %> alert-dismissible fade show" role="alert">
+    <%= message %>
+    <% if object && object.errors.any? %>
+      <% enumerator = object.errors.respond_to?(:full_messages) ? object.errors.full_messages : object.errors %>
+      <ul>
+        <% enumerator.each do |error_message| %>
+          <li><%= error_message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
