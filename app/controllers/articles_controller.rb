@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     # @articles = Article.preload(:comments)
-    @articles = Article.all
+    @articles = Article.all.order(updated_at: "DESC")
   end
 
   def show
@@ -19,13 +19,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to article_url(@article), flash: { success: "記事を作成しました。" }
+      render :create
     else
-      flash.now[:danger] = "入力内容にエラーがあります。"
-      respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
-        format.js   { render :new, status: :unprocessable_entity }
-      end
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +29,6 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       redirect_to article_url(@article), flash: { success: "記事を更新しました。" }
     else
-      flash.now[:danger] = "入力内容にエラーがあります。"
       respond_to do |format|
         format.html { render :edit, status: :unprocessable_entity }
         format.js   { render :edit, status: :unprocessable_entity }
@@ -43,7 +38,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to articles_path, flash: { success: "記事を削除しました。" }
+    render turbo_stream: turbo_stream.remove(@article)
   end
 
   private

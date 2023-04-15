@@ -1,2 +1,10 @@
-<div id="<%= dom_id article %>">
-</div>
+<%= turbo_frame_tag article do %>
+  <div class="card">
+    <div class="card-body">
+      <%= article.title %>
+      <%= link_to "Show", article, class: "btn btn-secondary mr-2" %>
+      <%= link_to "Edit", edit_article_path(article), class: "btn btn-primary mr-2" %>
+      <%= link_to "Destroy", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>

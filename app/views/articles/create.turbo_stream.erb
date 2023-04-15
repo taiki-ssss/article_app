@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend 'articles' do %>
+  <%= render @article %>
+<% end %>
+
+<%= turbo_stream.replace 'new_article' do %>
+  <%= render "new_button" %>
+<% end %>

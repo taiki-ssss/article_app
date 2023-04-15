@@ -1,11 +1,4 @@
-<%= render 'shared/flash', object: @article %>
+<%= turbo_frame_tag @article do %>
+  <%= render "form", article: @article %>
+<% end %>
 
-<h1>New article</h1>
-
-<%= render "form", article: @article %>
-
-<br>
-
-<div>
-  <%= link_to "Back to articles", articles_path %>
-</div>

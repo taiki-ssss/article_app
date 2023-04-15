@@ -1,14 +1,10 @@
-<%= render @article %>
-<%= render 'shared/flash', object: nil %>
-
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Back to articles", articles_path %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %></li>
-</ul>
-
-<h2>Comments</h2>
-<%= render @article.comments %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<%= turbo_frame_tag @article do %>
+  <div class="card">
+    <div class="card-body">
+      <%= @article.title %>
+      <%= @article.content %>
+      <%= @article.status %>
+      <%= link_to "Edit", edit_article_path(@article), class: "btn btn-primary mr-2" %>
+    </div>
+  </div>
+<% end %>

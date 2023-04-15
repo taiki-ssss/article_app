@@ -1,18 +1,11 @@
-<%= form_with(model: article) do |form| %>
-  <div>
-    <%= form.text_field :title %>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: article) do |form| %>
+      <div><%= form.text_field :title %></div>
+      <div><%= form.text_area :content %></div>
+      <div><%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %></div>
+      <div><%= form.submit %></div>
+    <% end %>
+    <div><%= link_to "Back to articles", articles_path, class: "btn btn-primary mr-2" %></div>
   </div>
-
-  <div>
-    <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

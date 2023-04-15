@@ -1,18 +1,13 @@
-<%= render 'shared/flash', object: nil %>
+<h1 class="text-center">Articles</h1>
 
+<div class="row justify-content-center">
+  <div class="col-8 mb-4">
+    <%= render "new_button" %>
+  </div>
 
-<h1>Articles</h1>
-
-Our blog has <%= Article.published_count %> articles and counting!
-
-<div id="articles">
-  <% @articles.each do |article| %>
-    <%= render article %>
-    <p>
-      <%= link_to "Show this article", article %>
-      <%= link_to "Destroy", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
-    </p>
-  <% end %>
+  <div class="col-8 mb-4">
+    <%= turbo_frame_tag 'articles' do %>
+      <%= render @articles %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New article", new_article_path %>
