@@ -1,3 +1,4 @@
+<!-- app/views/articles/index.html.erb -->
 <h1 class="text-center">Articles</h1>
 
 <div class="row justify-content-center">
@@ -7,7 +8,9 @@
 
   <div class="col-8 mb-4">
     <%= turbo_frame_tag 'articles' do %>
+      <%= paginate @pagination %>
       <%= render @articles %>
+      <%= paginate @pagination %>
     <% end %>
   </div>
 </div>

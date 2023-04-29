@@ -1,9 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
 
+  include Paginatable
+
   def index
-    # @articles = Article.preload(:comments)
-    @articles = Article.all.order(updated_at: "DESC")
+    @pagination = Article.order(updated_at: "DESC").search_page(params[:page], params[:per_page], :desc)
+    @articles = @pagination[:records]
   end
 
   def show

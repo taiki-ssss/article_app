@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   include Visible
+  include Paginatable
 
   has_many :comments, dependent: :destroy
 
