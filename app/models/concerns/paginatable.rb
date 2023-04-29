@@ -7,7 +7,7 @@ module Paginatable
     def self.search_page(page, per, order = :asc)
       per_page = per.blank? ? Paginatable::PER_PAGE_OPTIONS.first : per.to_i
       total_count = self.count
-      current_page = (page.to_i - 1) < 0 ? 0 : page.to_i
+      current_page = (page.to_i - 1) < 0 ? 0 : page.to_i - 1
 
       if current_page.zero?
         records = limit(per_page)
